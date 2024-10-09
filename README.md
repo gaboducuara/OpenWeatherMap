@@ -1,1 +1,1 @@
-# API-Clima
+# openweathermap-api
