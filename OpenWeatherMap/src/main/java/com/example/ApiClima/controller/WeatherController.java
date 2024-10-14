@@ -20,9 +20,8 @@ public class WeatherController {
     private WeatherService weatherService;
 
 
-
-    @Operation(summary = "obtiene el clima actual de una ciudad o lugar", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
+    @Operation(summary = "Obtiene el clima actual de una ciudad o lugar", responses = {
+            @ApiResponse(responseCode = "200", description = "Ok")
     })
     @GetMapping("/{cityName}")
     public ResponseEntity<WeatherDTO> getWeatherByCityName(@PathVariable String cityName) {
@@ -30,9 +29,8 @@ public class WeatherController {
         return ResponseEntity.ok(weatherDTO);
     }
 
-
-    @Operation(summary = "obtiene el pronostico de 5 dias de alguna ciudad", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
+    @Operation(summary = "Obtiene el pronostico extendido de 5 dias de una ciudad o lugar", responses = {
+            @ApiResponse(responseCode = "200", description = "Ok")
     })
     @GetMapping("/forecast/{cityName}")
     public ResponseEntity<ForecastDTO> getForecast(@PathVariable String cityName) {
@@ -40,10 +38,8 @@ public class WeatherController {
         return ResponseEntity.ok(forecastDTO);
     }
 
-
-
-    @Operation(summary = "obtiene el clima actual de una ciudad o lugar", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
+    @Operation(summary = "Obtiene la geolocalizacion de una ciudad o lugar", responses = {
+            @ApiResponse(responseCode = "200", description = "Ok")
     })
     @GetMapping("/geo/{cityName}")
     public List<GeolocationDTO> getGeolocation(@PathVariable String cityName) {
@@ -51,33 +47,18 @@ public class WeatherController {
         return geolocationDTOList;
     }
 
-
-
-    @Operation(summary = "Cache donde se elimina el cache del tiempo", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
-    })
     @DeleteMapping("/delete/cacheWeather")
     public ResponseEntity<String> clearAllCacheWeather(){
         weatherService.clearCacheWeather();
         return ResponseEntity.ok("Cache for current weather has been cleared.");
     }
 
-
-
-    @Operation(summary = "Cache donde se elimina el cache el pronostico", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
-    })
     @DeleteMapping("/delete/cacheForecast")
     public ResponseEntity<String> clearAllCacheForecast(){
         weatherService.clearCacheForecast();
         return ResponseEntity.ok("Cache for current forecast has been cleared.");
     }
 
-    
-
-    @Operation(summary = "Cache donde se elimina el cache de la geolocalizacion", responses = {
-            @ApiResponse(responseCode = "200", description = "Todo Correcto" )
-    })
     @DeleteMapping("/delete/cacheGeolocation")
     public ResponseEntity<String> clearAllCacheGeolocation(){
         weatherService.clearCacheGeolocation();
